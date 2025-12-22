@@ -51,27 +51,34 @@ public:
         std::cout << "---------------------------\n";
     }
 
-    PotionRecipe searchRecipeByName(const std::string& name) const 
+    PotionRecipe searchRecipeByName(const std::string& name) const //이름 검색
     {
-     
-        for (const auto& recipe : name) 
-        {
-            if(recipes.potionName == name)
-
-                return recipes;
-        }
+        for (const auto& recipe : recipes) {
+            if (recipe.potionName == name) {
+                return recipe;
+            }
+     }
+        return PotionRecipe("찾으시는거 없어요", {});
               
     }
 
-    std::vector<PotionRecipe> searchRecipeByIngredient(const std::string& ingredient) const 
+    std::vector<PotionRecipe> searchRecipeByIngredient(const std::string& ingredient) const //재료 검색
     {
+        std::vector<PotionRecipe> result;//모르겠음 따로 공부 해야할듯
       //물약 재료로 검색이 가능 / 특정 재료가 포함된 모든 레시피를 찾을 수 있어야 함
-        for (const auto& recipe : ingredient)
+        for (const auto& recipe : recipes)
         {
-            if (recipe.ingredients == ingredient)
-
-                return recipe;
+            for (const auto& i : recipe.ingredients)
+            {
+                if (i == ingredient) {
+                    result.push_back(recipe);
+                    break;
+                }
+            }
         }
+
+        return result;//예외처리
+
     }
 
 
@@ -81,17 +88,20 @@ public:
 int main() {
     AlchemyWorkshop myWorkshop;
 
-    myWorkshop.addRecipe("Healing Potion", std::vector<std::string>{"Herb"});
-    myWorkshop.addRecipe("Mana Potion", std::vector<std::string>{"Magic Water"});
-    myWorkshop.addRecipe("Stamina Potion", std::vector<std::string>{"Herb"});
-    myWorkshop.addRecipe("Fire Resistance Potion", std::vector<std::string>{"Fire Flower"});
+    myWorkshop.addRecipe("체력 포션", std::vector<std::string>{"허브"});
+    myWorkshop.addRecipe("마나 포션", std::vector<std::string>{"마법의 물"});
+    myWorkshop.addRecipe("스테미나 포션", std::vector<std::string>{"허브"});
+    myWorkshop.addRecipe("불속성 저항 포션", std::vector<std::string>{"화염꽃"});
+    //피로 회복제, 비타민
+    //피로 충전제, 불스원샷
+
 
     while (true) {
         std::cout << "연금술 공방 관리 시스템" << std::endl;
         std::cout << "1. 레시피 추가" << std::endl;
         std::cout << "2. 모든 레시피 출력" << std::endl;
         std::cout << "3. 물약 이름으로 검색" << std::endl;
-        std::cout << "4. 물약 재료로 검색" << std::endl;
+        std::cout << "4. 재료 이름으로 검색" << std::endl;
         std::cout << "5. 종료" << std::endl;
         std::cout << "선택: ";
 
@@ -138,17 +148,28 @@ int main() {
         }
         else if (choice == 2) {
             myWorkshop.displayAllRecipes();
-        }
 
+        }
         else if (choice == 3) {
-
-            std::string name;
-            std::cout << "물약을 검색하세요" << std::endl;
+            std::string searchName;
+            std::cout << "물약 이름: ";
             std::cin.ignore(10000, '\n');
-            std::getline(std:cin, name);
-        }
+            std::getline(std::cin, searchName);
+            
+            myWorkshop.searchRecipeByName(searchName);
 
         }
+
+        else if (choice == 4) {
+            std::string searchIngredientName;
+            std::cout << "재료 이름: ";
+            std::cin.ignore(10000, '\n');
+            std::getline(std::cin, searchIngredientName);
+
+
+        }
+
+
         else if (choice == 5) {
             std::cout << "공방 문을 닫습니다..." << std::endl;
             break;
