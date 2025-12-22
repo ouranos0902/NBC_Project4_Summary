@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\unreal work file\\Git\\NBC_InventorySystem\\NBC_Project4_Summary\\",
+  "WorkspaceRootPath": "D:\\unreal work file\\Git\\NBC_Project4_Summary\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A5372C9-11DB-4D70-9998-19AD8DFD5A37}|NBC_Project4_Summary\\NBC_Project4_Summary.vcxproj|D:\\unreal work file\\Git\\NBC_InventorySystem\\NBC_Project4_Summary\\NBC_Project4_Summary\\Summary.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{4A5372C9-11DB-4D70-9998-19AD8DFD5A37}|NBC_Project4_Summary\\NBC_Project4_Summary.vcxproj|D:\\unreal work file\\Git\\NBC_Project4_Summary\\NBC_Project4_Summary\\Summary.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4A5372C9-11DB-4D70-9998-19AD8DFD5A37}|NBC_Project4_Summary\\NBC_Project4_Summary.vcxproj|solutionrelative:NBC_Project4_Summary\\Summary.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Summary.cpp",
-              "DocumentMoniker": "D:\\unreal work file\\Git\\NBC_InventorySystem\\NBC_Project4_Summary\\NBC_Project4_Summary\\Summary.cpp",
+              "DocumentMoniker": "D:\\unreal work file\\Git\\NBC_Project4_Summary\\NBC_Project4_Summary\\Summary.cpp",
               "RelativeDocumentMoniker": "NBC_Project4_Summary\\Summary.cpp",
-              "ToolTip": "D:\\unreal work file\\Git\\NBC_InventorySystem\\NBC_Project4_Summary\\NBC_Project4_Summary\\Summary.cpp",
+              "ToolTip": "D:\\unreal work file\\Git\\NBC_Project4_Summary\\NBC_Project4_Summary\\Summary.cpp",
               "RelativeToolTip": "NBC_Project4_Summary\\Summary.cpp",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAGkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-12-22T05:11:56.769Z",
               "EditorCaption": ""
