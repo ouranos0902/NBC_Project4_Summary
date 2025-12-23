@@ -2,46 +2,46 @@
 #include <vector>
 #include <string>
 
-// PotionRecipe Å¬·¡½º: Àç·á ¸ñ·ÏÀ» vector<string>À¸·Î º¯°æ
-class PotionRecipe { //¹°¾à 1°³ÀÇ Á¤º¸ ÀÌ¸§ +Àç·á¸ñ·Ï
+// PotionRecipe í´ë˜ìŠ¤: ì¬ë£Œ ëª©ë¡ì„ vector<string>ìœ¼ë¡œ ë³€ê²½
+class PotionRecipe { //ë¬¼ì•½ 1ê°œì˜ ì •ë³´ ì´ë¦„ +ì¬ë£Œëª©ë¡
 public:
     std::string potionName;
-    std::vector<std::string> ingredients; // Àç·á°¡ ¿©·¯°³¶ó¼­ vector
+    std::vector<std::string> ingredients; // ì¬ë£Œê°€ ì—¬ëŸ¬ê°œë¼ì„œ vector
 
-    // ¸Å°³º¯¼ö (name, ingredients) ¸â¹ö º¯¼ö (potionName, ingredients)
+    // ë§¤ê°œë³€ìˆ˜ (name, ingredients) ë©¤ë²„ ë³€ìˆ˜ (potionName, ingredients)
     PotionRecipe(const std::string& name, const std::vector<std::string>& ingredients)
         : potionName(name), ingredients(ingredients) {
     }
 };
 
-// AlchemyWorkshop Å¬·¡½º: ·¹½ÃÇÇ ¸ñ·ÏÀ» °ü¸®
+// AlchemyWorkshop í´ë˜ìŠ¤: ë ˆì‹œí”¼ ëª©ë¡ì„ ê´€ë¦¬
 class AlchemyWorkshop {
 private:
     std::vector<PotionRecipe> recipes;
 
 public:
-    // addRecipe ¸Ş¼­µå: Àç·á ¸ñ·Ï(vector)À» ¸Å°³º¯¼ö·Î ¹Şµµ·Ï ¼öÁ¤
+    // addRecipe ë©”ì„œë“œ: ì¬ë£Œ ëª©ë¡(vector)ì„ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ë„ë¡ ìˆ˜ì •
     void addRecipe(const std::string& name, const std::vector<std::string>& ingredients) {
         recipes.push_back(PotionRecipe(name, ingredients));
-        std::cout << ">> »õ·Î¿î ·¹½ÃÇÇ '" << name << "'ÀÌ(°¡) Ãß°¡µÇ¾ú½À´Ï´Ù." << std::endl;
+        std::cout << ">> ìƒˆë¡œìš´ ë ˆì‹œí”¼ '" << name << "'ì´(ê°€) ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤." << std::endl;
     }
 
-    // ¸ğµç ·¹½ÃÇÇ Ãâ·Â ¸Ş¼­µå
+    // ëª¨ë“  ë ˆì‹œí”¼ ì¶œë ¥ ë©”ì„œë“œ
     void displayAllRecipes() const {
         if (recipes.empty()) {
-            std::cout << "¾ÆÁ÷ µî·ÏµÈ ·¹½ÃÇÇ°¡ ¾ø½À´Ï´Ù." << std::endl;
+            std::cout << "ì•„ì§ ë“±ë¡ëœ ë ˆì‹œí”¼ê°€ ì—†ìŠµë‹ˆë‹¤." << std::endl;
             return;
         }
 
-        std::cout << "\n--- [ ÀüÃ¼ ·¹½ÃÇÇ ¸ñ·Ï ] ---" << std::endl;
+        std::cout << "\n--- [ ì „ì²´ ë ˆì‹œí”¼ ëª©ë¡ ] ---" << std::endl;
         for (size_t i = 0; i < recipes.size(); ++i) {
-            std::cout << "- ¹°¾à ÀÌ¸§: " << recipes[i].potionName << std::endl;
-            std::cout << "  > ÇÊ¿ä Àç·á: ";
+            std::cout << "- ë¬¼ì•½ ì´ë¦„: " << recipes[i].potionName << std::endl;
+            std::cout << "  > í•„ìš” ì¬ë£Œ: ";
 
-            // Àç·á ¸ñ·ÏÀ» ¼øÈ¸ÇÏ¸ç Ãâ·Â
+            // ì¬ë£Œ ëª©ë¡ì„ ìˆœíšŒí•˜ë©° ì¶œë ¥
             for (size_t j = 0; j < recipes[i].ingredients.size(); ++j) {
                 std::cout << recipes[i].ingredients[j];
-                // ¸¶Áö¸· Àç·á°¡ ¾Æ´Ï¸é ½°Ç¥·Î ±¸ºĞ
+                // ë§ˆì§€ë§‰ ì¬ë£Œê°€ ì•„ë‹ˆë©´ ì‰¼í‘œë¡œ êµ¬ë¶„
                 if (j < recipes[i].ingredients.size() - 1) {
                     std::cout << ", ";
                 }
@@ -51,37 +51,37 @@ public:
         std::cout << "---------------------------\n";
     }
 
-    PotionRecipe searchRecipeByName(const std::string& name) const //ÀÌ¸§ °Ë»ö
+    PotionRecipe searchRecipeByName(const std::string& name) const //ì´ë¦„ ê²€ìƒ‰
     {
-        for (const auto& recipe : recipes) { //recipe -> Potion Recipe °´Ã¼ ÇÏ³ª
+        for (const auto& recipe : recipes) { //recipe -> Potion Recipe ê°ì²´ í•˜ë‚˜
             if (recipe.potionName == name) {
                 return recipe;
             }
      }
-        return PotionRecipe("Ã£À¸½Ã´Â°Å ¾ø¾î¿ä", {});
+        return PotionRecipe("ì°¾ìœ¼ì‹œëŠ”ê±° ì—†ì–´ìš”", {});
               
     }
 
-    // Æ¯Á¤ Àç·á°¡ µé¾î°£ ¸ğµç ¹°¾àÀ» Ã£¾Æ¼­ µ¹·ÁÁØ´Ù
-    std::vector<PotionRecipe> searchRecipeByIngredient(const std::string& ingredient) const //Àç·á °Ë»ö
+    // íŠ¹ì • ì¬ë£Œê°€ ë“¤ì–´ê°„ ëª¨ë“  ë¬¼ì•½ì„ ì°¾ì•„ì„œ ëŒë ¤ì¤€ë‹¤
+    std::vector<PotionRecipe> searchRecipeByIngredient(const std::string& ingredient) const //ì¬ë£Œ ê²€ìƒ‰
     {
-        std::vector<PotionRecipe> result;//¸ğ¸£°ÚÀ½ µû·Î °øºÎ ÇØ¾ßÇÒµí
-      //¹°¾à Àç·á·Î °Ë»öÀÌ °¡´É / Æ¯Á¤ Àç·á°¡ Æ÷ÇÔµÈ ¸ğµç ·¹½ÃÇÇ¸¦ Ã£À» ¼ö ÀÖ¾î¾ß ÇÔ
-        for (const auto& recipe : recipes) //¹°¾à È®ÀÎ
+        std::vector<PotionRecipe> result;//ëª¨ë¥´ê² ìŒ ë”°ë¡œ ê³µë¶€ í•´ì•¼í• ë“¯
+      //ë¬¼ì•½ ì¬ë£Œë¡œ ê²€ìƒ‰ì´ ê°€ëŠ¥ / íŠ¹ì • ì¬ë£Œê°€ í¬í•¨ëœ ëª¨ë“  ë ˆì‹œí”¼ë¥¼ ì°¾ì„ ìˆ˜ ìˆì–´ì•¼ í•¨
+        for (const auto& recipe : recipes) //ë¬¼ì•½ í™•ì¸
         {
-            for (const auto& i : recipe.ingredients) //±× ¹°¾àÀÇ Àç·á ÇÏ³ª¾¿ È®ÀÎ
+            for (const auto& i : recipe.ingredients) //ê·¸ ë¬¼ì•½ì˜ ì¬ë£Œ í•˜ë‚˜ì”© í™•ì¸
             {
-                if (i == ingredient) { //Àç·á ÀÌ¸§ÀÌ °°À¸¸é
-                    result.push_back(recipe); //¸ÇÀ§¿¡ Ãß°¡ÇØÁØ´Ù 
-                    break; //Áßº¹ ¹æÁö
+                if (i == ingredient) { //ì¬ë£Œ ì´ë¦„ì´ ê°™ìœ¼ë©´
+                    result.push_back(recipe); //ë§¨ìœ„ì— ì¶”ê°€í•´ì¤€ë‹¤ 
+                    break; //ì¤‘ë³µ ë°©ì§€
                 }
             }
         }
 
         return result;
-        /* °á°ú°¡ 1°³ÀÏ ¼ö µµ ¾øÀ» ¼ö µµ ¿©·¯ °³ÀÏ ¼öµµ ÀÖÀ¸´Ï vectorÇüÀÌ ÇÊ¿äÇÏ°í
-        ÇÏ³ª¸¸ Ã£À» ¶§´Â ¹Ù·Î returnÇÏ¸é µÇÁö¸¸ ¿©·¯°³¸¦ Ã£¾Æ¾ßÇÏ´Ï 
-        result¸¦ vectorÇü PotionRecipeÇü À¸·Î ¼±¾ğÇØÁà¼­  result¿¡ Ã£¾Æ³½ ¹°¾àµéÀ» ´ã¾Æ³½´Ù?
+        /* ê²°ê³¼ê°€ 1ê°œì¼ ìˆ˜ ë„ ì—†ì„ ìˆ˜ ë„ ì—¬ëŸ¬ ê°œì¼ ìˆ˜ë„ ìˆìœ¼ë‹ˆ vectorí˜•ì´ í•„ìš”í•˜ê³ 
+        í•˜ë‚˜ë§Œ ì°¾ì„ ë•ŒëŠ” ë°”ë¡œ returní•˜ë©´ ë˜ì§€ë§Œ ì—¬ëŸ¬ê°œë¥¼ ì°¾ì•„ì•¼í•˜ë‹ˆ 
+        resultë¥¼ vectorí˜• PotionRecipeí˜• ìœ¼ë¡œ ì„ ì–¸í•´ì¤˜ì„œ  resultì— ì°¾ì•„ë‚¸ ë¬¼ì•½ë“¤ì„ ë‹´ì•„ë‚¸ë‹¤?
         */
     }
 
@@ -92,27 +92,27 @@ public:
 int main() {
     AlchemyWorkshop myWorkshop;
 
-    myWorkshop.addRecipe("Ã¼·Â Æ÷¼Ç", std::vector<std::string>{"Çãºê"});
-    myWorkshop.addRecipe("¸¶³ª Æ÷¼Ç", std::vector<std::string>{"¸¶¹ıÀÇ ¹°"});
-    myWorkshop.addRecipe("½ºÅ×¹Ì³ª Æ÷¼Ç", std::vector<std::string>{"Çãºê"});
-    myWorkshop.addRecipe("ºÒ¼Ó¼º ÀúÇ× Æ÷¼Ç", std::vector<std::string>{"È­¿°²É"});
-   //AlchemyWorkShop Å¬·¡½º¿¡ µé¾î°¡ÀÖ´Ù.
+    myWorkshop.addRecipe("ì²´ë ¥ í¬ì…˜", std::vector<std::string>{"í—ˆë¸Œ"});
+    myWorkshop.addRecipe("ë§ˆë‚˜ í¬ì…˜", std::vector<std::string>{"ë§ˆë²•ì˜ ë¬¼"});
+    myWorkshop.addRecipe("ìŠ¤í…Œë¯¸ë‚˜ í¬ì…˜", std::vector<std::string>{"í—ˆë¸Œ"});
+    myWorkshop.addRecipe("ë¶ˆì†ì„± ì €í•­ í¬ì…˜", std::vector<std::string>{"í™”ì—¼ê½ƒ"});
+   //AlchemyWorkShop í´ë˜ìŠ¤ì— ë“¤ì–´ê°€ìˆë‹¤.
 
 
     while (true) {
-        std::cout << "¿¬±İ¼ú °ø¹æ °ü¸® ½Ã½ºÅÛ" << std::endl;
-        std::cout << "1. ·¹½ÃÇÇ Ãß°¡" << std::endl;
-        std::cout << "2. ¸ğµç ·¹½ÃÇÇ Ãâ·Â" << std::endl;
-        std::cout << "3. ¹°¾à ÀÌ¸§À¸·Î °Ë»ö" << std::endl;
-        std::cout << "4. Àç·á ÀÌ¸§À¸·Î °Ë»ö" << std::endl;
-        std::cout << "5. Á¾·á" << std::endl;
-        std::cout << "¼±ÅÃ: ";
+        std::cout << "ì—°ê¸ˆìˆ  ê³µë°© ê´€ë¦¬ ì‹œìŠ¤í…œ" << std::endl;
+        std::cout << "1. ë ˆì‹œí”¼ ì¶”ê°€" << std::endl;
+        std::cout << "2. ëª¨ë“  ë ˆì‹œí”¼ ì¶œë ¥" << std::endl;
+        std::cout << "3. ë¬¼ì•½ ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰" << std::endl;
+        std::cout << "4. ì¬ë£Œ ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰" << std::endl;
+        std::cout << "5. ì¢…ë£Œ" << std::endl;
+        std::cout << "ì„ íƒ: ";
 
         int choice;
         std::cin >> choice;
 
         if (std::cin.fail()) {
-            std::cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ¼ıÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << std::endl;
+            std::cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ìˆ«ìë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”." << std::endl;
             std::cin.clear();
             std::cin.ignore(10000, '\n');
             continue;
@@ -120,32 +120,32 @@ int main() {
 
         if (choice == 1) {
             std::string name;
-            std::cout << "¹°¾à ÀÌ¸§: ";
+            std::cout << "ë¬¼ì•½ ì´ë¦„: ";
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, name);
 
-            // ¿©·¯ Àç·á¸¦ ÀÔ·Â¹Ş±â À§ÇÑ ·ÎÁ÷
+            // ì—¬ëŸ¬ ì¬ë£Œë¥¼ ì…ë ¥ë°›ê¸° ìœ„í•œ ë¡œì§
             std::vector<std::string> ingredients_input;
             std::string ingredient;
-            std::cout << "ÇÊ¿äÇÑ Àç·áµéÀ» ÀÔ·ÂÇÏ¼¼¿ä. (ÀÔ·Â ¿Ï·á ½Ã '³¡' ÀÔ·Â)" << std::endl;
+            std::cout << "í•„ìš”í•œ ì¬ë£Œë“¤ì„ ì…ë ¥í•˜ì„¸ìš”. (ì…ë ¥ ì™„ë£Œ ì‹œ 'ë' ì…ë ¥)" << std::endl;
 
             while (true) {
-                std::cout << "Àç·á ÀÔ·Â: ";
+                std::cout << "ì¬ë£Œ ì…ë ¥: ";
                 std::getline(std::cin, ingredient);
 
-                // »ç¿ëÀÚ°¡ '³¡'À» ÀÔ·ÂÇÏ¸é Àç·á ÀÔ·Â Á¾·á
-                if (ingredient == "³¡") {
+                // ì‚¬ìš©ìê°€ 'ë'ì„ ì…ë ¥í•˜ë©´ ì¬ë£Œ ì…ë ¥ ì¢…ë£Œ
+                if (ingredient == "ë") {
                     break;
                 }
                 ingredients_input.push_back(ingredient);
             }
 
-            // ÀÔ·Â¹ŞÀº Àç·á°¡ ÇÏ³ª ÀÌ»ó ÀÖÀ» ¶§¸¸ ·¹½ÃÇÇ Ãß°¡
+            // ì…ë ¥ë°›ì€ ì¬ë£Œê°€ í•˜ë‚˜ ì´ìƒ ìˆì„ ë•Œë§Œ ë ˆì‹œí”¼ ì¶”ê°€
             if (!ingredients_input.empty()) {
                 myWorkshop.addRecipe(name, ingredients_input);
             }
             else {
-                std::cout << ">> Àç·á°¡ ÀÔ·ÂµÇÁö ¾Ê¾Æ ·¹½ÃÇÇ Ãß°¡¸¦ Ãë¼ÒÇÕ´Ï´Ù." << std::endl;
+                std::cout << ">> ì¬ë£Œê°€ ì…ë ¥ë˜ì§€ ì•Šì•„ ë ˆì‹œí”¼ ì¶”ê°€ë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤." << std::endl;
             }
 
         }
@@ -155,7 +155,7 @@ int main() {
         }
         else if (choice == 3) {
             std::string searchName;
-            std::cout << "¹°¾à ÀÌ¸§: ";
+            std::cout << "ë¬¼ì•½ ì´ë¦„: ";
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, searchName);
             
@@ -170,26 +170,26 @@ int main() {
 
         else if (choice == 4) {
             std::string searchIngredientName;
-            std::cout << "Àç·á ÀÌ¸§: ";
+            std::cout << "ì¬ë£Œ ì´ë¦„: ";
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, searchIngredientName);
 
-            ?? result = myWorkshop.searchRecipeByIngredient(searchIngredientName);
+            ?? result = myWorkshop.searchRecipeByIngredient(searchIngredientName); //ë¬´ì—‡ì„ ë„£ì–´ì•¼í• ì§€...
 
             for (const auto& ing : recipe.potionName) {
 
-                std::cout << recipe.potionName << std::endl;
+                std::cout << recipe.potionName << std::endl; //ì •ì˜ë¥¼ ì´ìƒí•˜ê²Œ í•œë“¯. recipe : recipe.potionNameìœ¼ë¡œ í•˜ê±°ë‚˜ ingì— ë§ê²Œ í•˜ê±°ë‚˜
             }
         }
 
 
         else if (choice == 5) {
-            std::cout << "°ø¹æ ¹®À» ´İ½À´Ï´Ù..." << std::endl;
+            std::cout << "ê³µë°© ë¬¸ì„ ë‹«ìŠµë‹ˆë‹¤..." << std::endl;
             break;
 
         }
         else {
-            std::cout << "Àß¸øµÈ ¼±ÅÃÀÔ´Ï´Ù. ´Ù½Ã ½ÃµµÇÏ¼¼¿ä." << std::endl;
+            std::cout << "ì˜ëª»ëœ ì„ íƒì…ë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”." << std::endl;
         }
     }
 
