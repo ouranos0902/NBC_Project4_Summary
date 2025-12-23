@@ -3,12 +3,12 @@
 #include <string>
 
 // PotionRecipe 클래스: 재료 목록을 vector<string>으로 변경
-class PotionRecipe {
+class PotionRecipe { //물약 1개의 정보 이름 +재료목록
 public:
     std::string potionName;
-    std::vector<std::string> ingredients; // 단일 재료에서 재료 '목록'으로 변경
+    std::vector<std::string> ingredients; // 재료가 여러개라서 vector
 
-    // 생성자: 재료 목록을 받아 초기화하도록 수정
+    // 매개변수 (name, ingredients) 멤버 변수 (potionName, ingredients)
     PotionRecipe(const std::string& name, const std::vector<std::string>& ingredients)
         : potionName(name), ingredients(ingredients) {
     }
@@ -53,7 +53,7 @@ public:
 
     PotionRecipe searchRecipeByName(const std::string& name) const //이름 검색
     {
-        for (const auto& recipe : recipes) {
+        for (const auto& recipe : recipes) { //recipe -> Potion Recipe 객체 하나
             if (recipe.potionName == name) {
                 return recipe;
             }
@@ -62,23 +62,27 @@ public:
               
     }
 
+    // 특정 재료가 들어간 모든 물약을 찾아서 돌려준다
     std::vector<PotionRecipe> searchRecipeByIngredient(const std::string& ingredient) const //재료 검색
     {
         std::vector<PotionRecipe> result;//모르겠음 따로 공부 해야할듯
       //물약 재료로 검색이 가능 / 특정 재료가 포함된 모든 레시피를 찾을 수 있어야 함
-        for (const auto& recipe : recipes)
+        for (const auto& recipe : recipes) //물약 확인
         {
-            for (const auto& i : recipe.ingredients)
+            for (const auto& i : recipe.ingredients) //그 물약의 재료 하나씩 확인
             {
-                if (i == ingredient) {
-                    result.push_back(recipe);
-                    break;
+                if (i == ingredient) { //재료 이름이 같으면
+                    result.push_back(recipe); //맨위에 추가해준다 
+                    break; //중복 방지
                 }
             }
         }
 
-        return result;//예외처리
-
+        return result;
+        /* 결과가 1개일 수 도 없을 수 도 여러 개일 수도 있으니 vector형이 필요하고
+        하나만 찾을 때는 바로 return하면 되지만 여러개를 찾아야하니 
+        result를 vector형 PotionRecipe형 으로 선언해줘서  result에 찾아낸 물약들을 담아낸다?
+        */
     }
 
 
@@ -92,8 +96,7 @@ int main() {
     myWorkshop.addRecipe("마나 포션", std::vector<std::string>{"마법의 물"});
     myWorkshop.addRecipe("스테미나 포션", std::vector<std::string>{"허브"});
     myWorkshop.addRecipe("불속성 저항 포션", std::vector<std::string>{"화염꽃"});
-    //피로 회복제, 비타민
-    //피로 충전제, 불스원샷
+   //AlchemyWorkShop 클래스에 들어가있다.
 
 
     while (true) {
@@ -156,8 +159,13 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, searchName);
             
-            myWorkshop.searchRecipeByName(searchName);
+            PotionRecipe result = myWorkshop.searchRecipeByName(searchName);
 
+            std::cout << result.potionName << ", ";
+            for (const auto& ing : result.ingredients) {
+                std::cout << ing << " ";
+            }  
+            std::cout <<std::endl;
         }
 
         else if (choice == 4) {
@@ -166,7 +174,12 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, searchIngredientName);
 
+            ?? result = myWorkshop.searchRecipeByIngredient(searchIngredientName);
 
+            for (const auto& ing : recipe.potionName) {
+
+                std::cout << recipe.potionName << std::endl;
+            }
         }
 
 
